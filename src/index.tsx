@@ -1,12 +1,16 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App, { Counter } from './App';
 import * as serviceWorker from './serviceWorker';
+
+import 'semantic-ui-css/semantic.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <Counter />
   </React.StrictMode>,
   document.getElementById('root'),
 );

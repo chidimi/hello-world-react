@@ -13,6 +13,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.0",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -69,15 +71,15 @@
   },
   "husky": {
     "hooks": {
-    "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged"
     }
-    },
-    "lint-staged": {
+  },
+  "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-    "eslint --fix"
+      "eslint --fix"
     ],
     "src/**/*.css": [
-    "stylelint --fix"
+      "stylelint --fix"
     ]
   }
 }
