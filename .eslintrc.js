@@ -34,6 +34,7 @@ module.exports = {
       'import',
       'jsx-a11y',
       'prettier',
+      'prefer-arrow',
       'react',
       'react-hooks',
     ],
@@ -44,6 +45,14 @@ module.exports = {
         'always',
         {
           exceptAfterSingleLine: true,
+        },
+      ],
+      'prefer-arrow/prefer-arrow-functions': [
+        'error',
+        {
+          disallowPrototype: true,
+          singleReturnOnly: false,
+          classPropertiesAllowed: false,
         },
       ],
       // should be rewritten as `['error', { allowAsStatement: true }]` in ESLint 7 or later
