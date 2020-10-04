@@ -1,65 +1,36 @@
 // eslint-disable-next-line no-use-before-define
-import React, { Component, ReactElement } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Button, Card, Statistic, Icon } from 'semantic-ui-react';
 
-const LIMIT = 60;
+const Timer: FC<{ limit: number }> = ({ limit }) => {
+  const [timeLeft, setTimeLeft] = useState(limit);
+  const reset = () => setTimeLeft(limit);
+  const tick = () => setTimeLeft((t) => t - 1);
 
-type State = {
-  timeLeft: number;
+  useEffect(() => {
+    const timerId = setInterval(tick, 1000);
+
+    return () => clearInterval(timerId);
+  }, []);
+
+  useEffect(() => {
+    if (timeLeft === 0) setTimeLeft(limit);
+  }, [timeLeft, limit]);
+
+  return (
+    <Card>
+      <Statistic className="number-board">
+        <Statistic.Label>time</Statistic.Label>
+        <Statistic.Value>{timeLeft}</Statistic.Value>
+      </Statistic>
+      <Card.Content>
+        <Button color="red" fluid onClick={reset}>
+          <Icon name="redo" />
+          Reset
+        </Button>
+      </Card.Content>
+    </Card>
+  );
 };
-
-class Timer extends Component<unknown, State> {
-  timerId: NodeJS.Timer | null = null;
-
-  constructor(props: unknown) {
-    super(props);
-    this.state = { timeLeft: LIMIT };
-  }
-
-  reset = (): void => {
-    this.setState({ timeLeft: LIMIT });
-  };
-
-  tick = (): void => {
-    this.setState((prevState) => ({ timeLeft: prevState.timeLeft - 1 }));
-  };
-
-  componentDidMount = (): void => {
-    this.timerId = setInterval(this.tick, 1000);
-  };
-
-  componentDidUpdate = (): void => {
-    const { timeLeft } = this.state;
-    if (timeLeft === 0) this.reset();
-  };
-
-  componentWillUnmount = (): void => {
-    if (this.timerId) clearInterval(this.timerId);
-  };
-
-  render = (): ReactElement => {
-    const { timeLeft } = this.state;
-
-    return (
-      <div className="container">
-        <header>
-          <h1>タイマー</h1>
-        </header>
-        <Card>
-          <Statistic className="number-board">
-            <Statistic.Label>time</Statistic.Label>
-            <Statistic.Value>{timeLeft}</Statistic.Value>
-          </Statistic>
-          <Card.Content>
-            <Button color="red" fluid onClick={this.reset}>
-              <Icon name="redo" />
-              Reset
-            </Button>
-          </Card.Content>
-        </Card>
-      </div>
-    );
-  };
-}
 
 export default Timer;

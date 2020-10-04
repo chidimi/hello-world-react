@@ -2,9 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App, { Counter } from './App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Timer from './components/Timer';
+import Counter from './components/Counter';
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -12,7 +13,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
     <Counter />
-    <Timer />
+    <Timer limit={100} />
   </React.StrictMode>,
   document.getElementById('root'),
 );
