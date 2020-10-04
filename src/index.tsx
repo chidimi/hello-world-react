@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App, { Counter } from './App';
 import * as serviceWorker from './serviceWorker';
+import Timer from './components/Timer';
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -11,6 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
     <Counter />
+    <Timer />
   </React.StrictMode>,
   document.getElementById('root'),
 );
